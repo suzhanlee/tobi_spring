@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 public class UserDao {
 
-    private final SimpleConnectionMaker simpleConnectionMaker;
+    private SimpleConnectionMaker simpleConnectionMaker;
 
-    public UserDao(SimpleConnectionMaker simpleConnectionMaker) {
-        this.simpleConnectionMaker = simpleConnectionMaker;
+    public UserDao() {
+        this.simpleConnectionMaker = new SimpleConnectionMaker();
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
@@ -54,7 +54,7 @@ public class UserDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao(new SimpleConnectionMaker());
+        UserDao dao = new UserDao();
 
         User user = new User();
         user.setId("whiteship");
