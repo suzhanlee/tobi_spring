@@ -15,10 +15,12 @@ public class DaoFactory {
     public ConnectionMaker connectionMaker() {
         return new SimpleConnectionMaker();
     }
+
     @Bean
     public AccountDao accountDao() {
         return new AccountDao(connectionMaker());
     }
+
     @Bean
     public MessageDao messageDao() {
         return new MessageDao(connectionMaker());
