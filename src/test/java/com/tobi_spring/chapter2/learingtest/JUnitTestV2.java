@@ -1,15 +1,11 @@
 package com.tobi_spring.chapter2.learingtest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.either;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.tobi_spring.chapter2.user.DaoFactory;
 import java.util.HashSet;
 import java.util.Set;
-import org.hamcrest.core.CombinableMatcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +47,6 @@ public class JUnitTestV2 {
 
         assertTrue(contextObject == null || contextObject == this.context);
         contextObject = this.context;
+
     }
 }
