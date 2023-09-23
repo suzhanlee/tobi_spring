@@ -1,6 +1,5 @@
 package com.tobi_spring.chapter3.userv6;
 
-import com.tobi_spring.chapter3.userv4.StatementStrategy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
