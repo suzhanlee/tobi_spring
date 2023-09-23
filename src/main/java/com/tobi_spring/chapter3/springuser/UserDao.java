@@ -23,6 +23,7 @@ public class UserDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    // 인스턴스 변수
     private RowMapper<User> userMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
