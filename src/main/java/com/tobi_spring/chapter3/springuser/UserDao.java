@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -23,6 +22,17 @@ public class UserDao {
     public void setDatasource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+    private RowMapper<User> userMapper = new RowMapper<User>() {
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            User user = new User();
+            user.setId(rs.getString("id"));
+            user.setName(rs.getString("name"));
+            user.setPassword(rs.getString("password"));
+            return user;
+        }
+    };
 
     public void add(User user) throws ClassNotFoundException, SQLException {
         jdbcTemplate.update("insert into users(id, name, password) values (?,?,?)",
@@ -46,17 +56,7 @@ public class UserDao {
 
     public User get(String id) throws ClassNotFoundException, SQLException {
         return jdbcTemplate.queryForObject("select * from users where id = ?",
-            new Object[]{id},
-            new RowMapper<User>() {
-                @Override
-                public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    User user = new User();
-                    user.setId(rs.getString("id"));
-                    user.setName(rs.getString("name"));
-                    user.setPassword(rs.getString("password"));
-                    return user;
-                }
-            });
+            new Object[]{id}, userMapper);
     }
 
     public int getCount() throws SQLException {
@@ -80,17 +80,6 @@ public class UserDao {
     }
 
     public List<User> getAll() {
-        return jdbcTemplate.query("select * from users order by id",
-            new RowMapper<User>() {
-                @Override
-                public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    User user = new User();
-                    user.setId(rs.getString("id"));
-                    user.setName(rs.getString("name"));
-                    user.setPassword(rs.getString("password"));
-                    return user;
-                }
-            }
-        );
+        return jdbcTemplate.query("select * from users order by id", userMapper);
     }
 }
