@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter4.user;
+package com.tobi_spring.chapter4.exception;
 
 import lombok.Getter;
 import lombok.Setter;

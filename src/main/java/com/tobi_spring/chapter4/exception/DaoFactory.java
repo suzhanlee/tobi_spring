@@ -1,24 +1,19 @@
-package com.tobi_spring.chapter4.user;
+package com.tobi_spring.chapter4.exception;
 
-import com.mysql.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 @Configuration
-public class CountingDaoFactory {
+public class DaoFactory {
 
     @Bean
     public UserDao userDao() throws InstantiationException, IllegalAccessException {
         UserDao dao = new UserDao();
         dao.setDatasource(dataSource());
         return dao;
-    }
-
-    @Bean
-    public ConnectionMaker connectionMaker() {
-        return new CountingConnectionMaker(realConnectionMaker());
     }
 
     @Bean
@@ -34,7 +29,7 @@ public class CountingDaoFactory {
     }
 
     @Bean
-    public ConnectionMaker realConnectionMaker() {
+    public ConnectionMaker connectionMaker() {
         return new SimpleConnectionMaker();
     }
 }

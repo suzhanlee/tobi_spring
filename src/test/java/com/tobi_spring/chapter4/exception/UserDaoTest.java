@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter4.user;
+package com.tobi_spring.chapter4.exception;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;

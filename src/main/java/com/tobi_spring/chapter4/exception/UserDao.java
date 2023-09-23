@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter4.user;
+package com.tobi_spring.chapter4.exception;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class UserDao {
         }
     };
 
-    public void add(User user) throws DuplicateUserIdException, SQLException {
+    public void add(User user) {
 //        try {
         jdbcTemplate.update("insert into users(id, name, password) values (?,?,?)",
             user.getId(), user.getName(), user.getPassword());
