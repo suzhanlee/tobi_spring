@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter5.service;
+package com.tobi_spring.chapter5.ver1;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,5 +25,14 @@ public class User {
         this.level = level;
         this.login = login;
         this.recommend = recommend;
+    }
+
+    public void upgradeLevel() {
+        Level nextLevel = level.nextLevel();
+        if (nextLevel == null) {
+            throw new IllegalStateException(level + "은 업그레이드가 불가능합니다");
+        } else {
+            level = nextLevel;
+        }
     }
 }

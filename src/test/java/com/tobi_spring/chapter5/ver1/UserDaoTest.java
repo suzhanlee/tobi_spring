@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter5.service;
+package com.tobi_spring.chapter5.ver1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

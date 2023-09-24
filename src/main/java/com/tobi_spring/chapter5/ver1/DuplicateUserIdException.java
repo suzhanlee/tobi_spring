@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter5.service;
+package com.tobi_spring.chapter5.ver1;
 
 public class DuplicateUserIdException extends RuntimeException {
 

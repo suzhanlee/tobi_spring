@@ -1,4 +1,4 @@
-package com.tobi_spring.chapter5.service;
+package com.tobi_spring.chapter5.ver1;
 
 import com.mysql.cj.jdbc.Driver;
 import javax.sql.DataSource;
@@ -8,6 +8,13 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 @Configuration
 public class DaoFactory {
+
+    @Bean
+    public UserService userService() throws InstantiationException, IllegalAccessException {
+        UserService userService = new UserService();
+        userService.setUserDao(userDao());
+        return userService;
+    }
 
     @Bean
     public UserDaoJdbc userDao() throws InstantiationException, IllegalAccessException {
