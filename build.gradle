@@ -36,5 +36,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation 'com.mysql:mysql-connector-j:8.1.0'
 
+    // https://mvnrepository.com/artifact/javax.mail/mail
+    implementation 'javax.mail:mail:1.4.7'
 }
 
