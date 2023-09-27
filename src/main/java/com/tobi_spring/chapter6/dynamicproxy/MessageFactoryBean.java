@@ -1,7 +1,6 @@
 package com.tobi_spring.chapter6.dynamicproxy;
 
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.stereotype.Component;
 
 public class MessageFactoryBean implements FactoryBean<Message> {
 
