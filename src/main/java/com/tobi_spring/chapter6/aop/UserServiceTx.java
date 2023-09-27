@@ -4,7 +4,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-public class UserServiceTx implements UserService{
+public class UserServiceTx implements UserService {
 
     UserService userService;
     PlatformTransactionManager transactionManager;
