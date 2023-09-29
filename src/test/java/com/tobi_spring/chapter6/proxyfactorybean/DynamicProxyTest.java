@@ -68,6 +68,8 @@ public class DynamicProxyTest {
     @Test
     @DisplayName("MethodInterceptor를 사용한 프록시 객체 생성, interceptor의 인자에 타깃 오브젝트 사용 x")
     void proxyFactoryBean() {
+        // 인터페이스를 굳이 알려주지 않아도 ProxyFactoryBean에 있는 인터페이스 자동검출 기능을 사용해
+        // 타깃 오브젝트가 구현하고 있는 인터페이스 정보를 알아낸다.
         ProxyFactoryBean pfBean = new ProxyFactoryBean();
         pfBean.setTarget(new HelloTarget());
         pfBean.addAdvice(new UpperCaseAdvice());
