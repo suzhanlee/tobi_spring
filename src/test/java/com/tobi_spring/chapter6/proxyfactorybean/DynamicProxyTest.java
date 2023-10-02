@@ -9,6 +9,8 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactoryBean;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 
 public class DynamicProxyTest {
 
@@ -80,6 +82,25 @@ public class DynamicProxyTest {
         assertThat(proxiedProxy.sayHello("Toby")).isEqualTo("HELLO TOBY");
         assertThat(proxiedProxy.sayHi("Toby")).isEqualTo("HI TOBY");
         assertThat(proxiedProxy.sayThankYou("Toby")).isEqualTo("THANK YOU TOBY");
+    }
+
+    @Test
+    void pointcutAdvisor() {
+        ProxyFactoryBean pfBean = new ProxyFactoryBean();
+        pfBean.setTarget(new HelloTarget());
+
+        NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
+        pointcut.setMappedName("sayH*");
+
+        // 포인트컷과 어드바이스를 묶어서 한번에 추가
+        pfBean.addAdvisor(new DefaultPointcutAdvisor(pointcut, new UpperCaseAdvice()));
+
+        Hello proxiedHello = (Hello) pfBean.getObject();
+
+        assertThat(proxiedHello.sayHello("Toby")).isEqualTo("HELLO TOBY");
+        assertThat(proxiedHello.sayHi("Toby")).isEqualTo("HI TOBY");
+        // 메소드 이름이 포인트컷의 선정조건에 맞지 않아 부가기능이 적용되지 않는다.
+        assertThat(proxiedHello.sayThankYou("Toby")).isEqualTo("Thank you Toby");
     }
 
 }
